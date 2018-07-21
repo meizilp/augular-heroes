@@ -6,6 +6,12 @@
 
 ## Git版本管理
 
+```sh
+git init
+git remote add origin https://github.com/meizilp/augular-heroes.git
+git push -u origin master
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
