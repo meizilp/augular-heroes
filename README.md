@@ -82,4 +82,37 @@ git push
 
 ## 运行
 
-`ng serve -o`
+```sh
+ng serve -o
+```
+
+## 项目文件目录结构
+
+### src文件夹：应用代码
+
+* app/app.component.{ts,html,css,spec.ts} 默认AppComponent组件的HTML模板、CSS样式、代码以及单元测试。
+* app/app.module.ts 默认AppModule根模块的定义，用于Angular组装应用。
+* styles.css 全局样式
+* assets/*：存放资源，发布时会复制到发布包中。默认有个.gitkeep文件以便git管理此文件夹。
+* environments/*: 不同目标环境的配置。
+* browserslist:
+* favicon.ico:
+* index.html
+* karma.conf.js
+* main.ts
+* polyfills.ts
+* test.ts
+* tsconfig.{app|spec}.json
+* tslint.json
+
+### 其他文件夹及文件
+
+* README.md
+* tsconfig.json
+* tslint.json
+* angular.json
+* node_modules文件夹：
+* e2e文件夹：
+* protractor.conf.js
+* .editorconfig
+* .gitignore
