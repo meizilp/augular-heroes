@@ -65,34 +65,21 @@ ng new angular-heroes
     ```
     最后一步需要输入github的账户名和密码。
 
+### 更新项目的代码
+
+在项目代码上传到github上的时候，可能会提示有安装隐患。在项目的insights tab页，选中dependency graph可以看到被提示的问题，这儿提示的是`hoek`有问题，执行`npm i hoek`升级到最新版本即可。此时`package.json`和`package-lock.json`都会更新。  
+关于`package-lock.json`：  
+<https://docs.npmjs.com/files/package-locks> 解释lock文件如何工作。  
+这个文件主要是解决包的深层次依赖版本要固定下来，避免同样的`package.json`安装出来的项目，其深层嵌套的依赖版本不一致的问题。当执行`npm i`的时候回产生或者更新lock文件。如果是开发的一个库，那么发布的时候不要发布lock文件。
+
+### 提交代码
+
+```sh
+git add .
+git commit -m "init version"
+git push
+```
+
 ## 运行
 
 `ng serve -o`
-
-## Git版本管理
-
-```sh
-git init
-git remote add origin https://github.com/meizilp/augular-heroes.git
-git push -u origin master
-```
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
