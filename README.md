@@ -116,3 +116,22 @@ ng serve -o
 * protractor.conf.js
 * .editorconfig
 * .gitignore
+
+## 修改组件
+
+1. src/app/app.component.ts
+    ```ts
+    title = 'My Heroes'   //定义了一个变量
+    ```
+2. src/app/app.component.html
+    ```html
+    {{ title }} <!-- 通过Angular的双花括号语法与组件的title属性绑定 -->
+    ```
+3. styles.css 全局样式
+
+修改组件后再次运行项目就可以看到网页内容发生的变化了。  
+如果项目一直在运行，那么代码发生变化时，页面会自动刷新（开发模式时代码文件是生成在内存中的）。
+
+## 进一步的学习
+
+[英雄编辑器](docs/01hero_editor.md)
