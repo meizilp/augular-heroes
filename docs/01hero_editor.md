@@ -68,4 +68,31 @@ export class HeroesComponent implements OnInit {
 </h1>
 ```
 
-## 双向绑定
+## 双向数据绑定
+
+需求：提供一个输入框，可以编辑英雄的名字，并且输入框内容变化时，显示英雄名字的`div`内容自动变化。
+
+1. 修改`src/app/heroes/heroes.component.html`，增加输入框，并和指定的组件属性建立双向数据绑定。
+    ```html
+    <div><span>id:</span>{{heroId}}</div>
+    <div><span>name:</span>{{heroName}}</div>
+
+    <div>
+    <label>name:
+        <input [(ngModel)]="heroName">
+    </label>
+    </div>
+    ```
+    [(ngModel)] 是Angular的双向数据绑定语法。这儿把`<input>`元素和组件的`heroName`属性绑定在了一起。当通过`<input>`元素输入内容时，`heroName`属性会跟着发生变化。
+2. 修改`src/app/app.module.ts`导入FormsModule
+    ```ts
+    import { FormsModule } from '@angular/forms';
+
+    @NgModule({
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
+    })
+    ```
+    只有导入了`FormsModule`后，`[(ngModel)]`才能被使用。
