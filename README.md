@@ -134,4 +134,5 @@ ng serve -o
 
 ## 进一步的学习
 
-[英雄编辑器](docs/01hero_editor.md)
+* [英雄编辑器](docs/01hero_editor.md)
+* [英雄列表](docs/02hero_list.md)

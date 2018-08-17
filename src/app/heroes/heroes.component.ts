@@ -1,5 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Hero {
+  id: number;
+  name: string;
+}
+
+const HEROES: Hero[] = [
+  { id: 10, name: 'Mr. Ten' },
+  { id: 11, name: 'Mr. Eleven' },
+  { id: 12, name: 'Mr. Twelve' },
+  { id: 13, name: 'Mr. Thirteen' },
+  { id: 14, name: 'Mr. Fourteen' },
+  { id: 15, name: 'Mr. Fifteen' },
+  { id: 16, name: 'Mr. Sixteen' },
+  { id: 17, name: 'Mr. Seventeen' },
+  { id: 18, name: 'Mr. Eighteen' },
+  { id: 19, name: 'Mr. Nineteen' },
+];
+
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -7,8 +25,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
 
-  heroName = 'WindStorm';
-  heroId = 1;
+  heroes = HEROES;
 
   constructor() { }
 

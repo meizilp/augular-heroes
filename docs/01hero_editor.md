@@ -96,3 +96,5 @@ export class HeroesComponent implements OnInit {
     })
     ```
     只有导入了`FormsModule`后，`[(ngModel)]`才能被使用。
+
+[英雄列表](02hero_list.md)
