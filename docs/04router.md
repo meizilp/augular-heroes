@@ -120,6 +120,25 @@ export class AppRoutingModule { }
 
 ### 增加指向仪表盘的路由
 
+1. 修改`src/app/app-routing.module.ts`:
+    ```ts
+    import { DashboardComponent } from './dashboard/dashboard.component';
+
+    const routes: Routes = [
+      { path: 'heroes', component: HeroesComponent },
+      { path: 'dashboard', component: DashboardComponent }
+    ];
+    ```
+2. 修改`src/app/app.component.html`增加指向仪表盘
+    ```html
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/heroes">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
+    ```
+
 ### 设置默认路由
 
 ### 增加页面切换导航
