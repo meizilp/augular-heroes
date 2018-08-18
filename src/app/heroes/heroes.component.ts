@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Hero {
-  id: number;
-  name: string;
-}
+import { Hero } from '../Hero';
 
 const HEROES: Hero[] = [
   { id: 10, name: 'Mr. Ten' },

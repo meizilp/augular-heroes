@@ -103,3 +103,58 @@
         [class.selected]="hero === selectedHero"></li>
     ```
     Angular可以动态的为元素添加或者删除CSS类，绑定或移除单个CSS类的语法是`[class.类名]="条件"`，当条件成立时就会为这个元素绑定这个类。
+
+## 拆分英雄详情组件
+
+现在的代码中，英雄列表的视图中还包含了英雄详情的显示，不便于维护。可以把英雄详情单独拆分出来形成一个组件。
+
+### 创建英雄详情组件
+
+1. 通过`ng`命令行创建新组件
+    ```sh
+    ng generate component hero-detail
+    ```
+    * 会创建`src/app/hero-detail/`目录
+    * 会在新创建的目录下创建`hero-detail.component.{html,spec.ts,ts,css}`4个文件
+    * 会修改`src/app/app.module.ts`文件声明新创建的组件
+2. 编写英雄详情的组件代码
+    * 把`Hero`接口放到单独的文件中`src/app/Hero.ts`
+    * 在`src/app/hero-detail/hero-detail.component.ts`定义一个属性`hero`，指向要显示的对象
+    * 上面的属性是要外面传给详情组件的，所以要加上`@Input`修饰符
+    ```ts
+    import { Component, OnInit, Input } from '@angular/core';  
+    import { Hero } from '../Hero';
+    @Component({
+      selector: 'app-hero-detail',
+      templateUrl: './hero-detail.component.html',
+      styleUrls: ['./hero-detail.component.css']
+    })
+    export class HeroDetailComponent implements OnInit {
+      @Input() hero: Hero;
+      constructor() { }
+      ngOnInit() {
+      }
+    }
+    ```
+3. 编写英雄详情的视图
+    ```html
+    <div *ngIf="hero">
+        <h2>{{hero.name}}'s Details</h2>
+        <div><span>id: </span>{{hero.id}}</div>
+        <div>
+            <label>name:
+                <input [(ngModel)]="hero.name">
+            </label>
+        </div>
+    </div>
+    ```
+    使用组件中定义的`hero`属性值来显示。
+
+### 引用英雄详情组件
+
+```html
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
+```
+
+* 在`src/app/heroes/heroes.component.html`中引用详情组件
+* 通过`[hero]="selectedHero`单向数据绑定语法，把当前选中的值传递给详情组件
