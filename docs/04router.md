@@ -85,13 +85,38 @@ export class AppRoutingModule { }
 
 ### 创建仪表盘组件
 
-```sh
-ng generate component dashboard
-```
-
-* 会创建`src/app/dashboard`目录
-* 会创建`src/app/dashboard/dashboard.component.{ts,html,css,spec.ts}`四个组件文件
-* 会修改`src/app/app.module.ts`增加仪表盘组件的声明
+1. 创建组件框架文件
+    ```sh
+    ng generate component dashboard
+    ```
+    * 会创建`src/app/dashboard`目录
+    * 会创建`src/app/dashboard/dashboard.component.{ts,html,css,spec.ts}`四个组件文件
+    * 会修改`src/app/app.module.ts`增加仪表盘组件的声明
+2. 实现组件逻辑代码`src/app/dashboard/dashboard.component.ts`
+    ```ts
+    export class DashboardComponent implements OnInit {
+      topHeroes: Hero[] = [];
+      constructor(private heroService: HeroService) { }
+      ngOnInit() {
+        this.heroService.getHeroes()
+          .subscribe(heroes => this.topHeroes = heroes.slice(0, 5));
+      }
+    }
+    ```
+    * 定义了一个属性`topHeroes`，只保存前5个
+    * 通过依赖注入的`HeroService`来获取英雄
+3. 实现组件视图`src/app/dashboard/dashboard.component.html`
+    ```html
+    <h3>Top Heroes</h3>
+    <div class="grid grid-pad">
+      <a *ngFor="let hero of topHeroes" class="col-1-4">
+        <div class="module hero">
+          <h4>{{hero.name}}</h4>
+        </div>
+      </a>
+    </div>
+    ```
+    * 循环显示列表中所有的英雄
 
 ### 增加指向仪表盘的路由
 
