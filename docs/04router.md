@@ -151,18 +151,45 @@ const routes: Routes = [
 ];
 ```
 
-### 增加页面切换导航
-
 ## 导航到英雄详情
 
-### 单独的英雄详情组件
+1. 在仪表盘点击某个英雄，会跳转到英雄详情页面
+2. 在英雄列表点击某个英雄，会跳转到英雄详情页面
+3. 直接在浏览器地址栏输入带有id的URL，会加载英雄详情页面
 
 ### 参数化路由
 
-### 参数化链接URL
+修改`src/app/app-routing.module.ts`，增加一条参数化路由：
 
-`<a>`和`routerLink`的区别：页面重载区域不一样、参数？
+```ts
+{ path: 'detail/:id', component: HeroDetailComponent }
+```
 
-### 从URL中提取参数
+`:id`是个占位符，URL这个位置的值会作为参数传递到组件。
+
+### 支持路由的英雄详情组件
+
+以前父组件传递属性到详情组件，详情组件就显示英雄对象的详情，现在要改成详情组件被创建后获取是哪个路由创建的，然后提取参数，获取英雄对象，进行显示。
+
+### 指向详情的路由
+
+* 仪表盘中指向英雄详情，修改`src/app/dashboard/dashboard.component.html`
+    ```html
+    <a *ngFor="let hero of topHeroes" class="col-1-4" routerLink="/detail/{{hero.id}}">
+    ```
+    增加了`routerLink`指令，并且指向的路由在生成的时候每个都不一样。
+* 英雄列表中指向英雄详情，修改`src/app/heroes/heroes.component.html`
+    ```html
+    <ul class="heroes">
+      <li *ngFor="let hero of heroes">
+        <a routerLink="/detail/{{hero.id}}>
+          <span class="badge">{{hero.id}}</span>{{hero.name}}
+        </a>
+      </li>
+    </ul>
+    ```
+    每个列表项中放一个`<a>`元素，并且根据`hero.id`动态的生成路由。
 
 ### 返回上级页面
+
+## 移除无用代码
