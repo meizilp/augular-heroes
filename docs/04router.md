@@ -216,6 +216,24 @@ const routes: Routes = [
 
 ### 返回上级页面
 
+1. 修改`src/app/hero-detail/hero-detail.component.ts`，增加返回回调函数
+    ```ts
+    import { Location } from '@angular/common';
+    constructor(private route: ActivatedRoute,
+      private heroService: HeroService,
+      private location: Location) { }
+    goBack() {
+      this.location.back()
+    }
+    ```
+    * 导入`Location`符号
+    * 构造函数通过依赖服务获取`Location`服务实例
+    * 回调函数调用`back()`函数操作浏览器返回上一个URL
+2. 修改`src/app/hero-detail/hero-detail.component.html`，增加返回按钮并绑定回调函数
+    ```html
+    <button (click)="goBack()">返回</button>
+    ```
+
 ## 移除无用代码
 
 1. 英雄列表中无用的英雄详情
