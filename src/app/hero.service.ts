@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './Hero';
+import { Observable, of } from 'rxjs';
 
 const HEROES: Hero[] = [
   { id: 10, name: 'Mr. Ten' },
@@ -21,7 +22,7 @@ export class HeroService {
 
   constructor() { }
 
-  getHeroes(): Hero[] {
-    return HEROES;
+  getHeroes(): Observable<Hero[]> {
+    return of(HEROES);
   }
 }

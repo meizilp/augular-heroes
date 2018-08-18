@@ -69,4 +69,18 @@ getHeroes(): Hero[] {
 
 ### 异步获取数据
 
-## Message服务
+通过网络获取数据更多的情况下是异步的，此处用RxJS库提供的`Observable`函数式编程来处理。
+
+* 在服务`src/app/hero.service.ts`中返回`Observable`
+    ```ts
+    getHeroes(): Observable<Hero[]> {
+      return of(HEROES);
+    }
+    ```
+* 在列表组件`src/app/heroes/heroes.component.ts`中通过订阅接收事件，在事件处理的回调中获取值
+    ```ts
+    ngOnInit() {
+      this.heroService.getHeroes()
+        .subscribe(heroes => this.heroes = heroes);
+    }
+    ```
