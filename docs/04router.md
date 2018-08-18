@@ -240,3 +240,6 @@ const routes: Routes = [
 2. 英雄列表中处理选中元素的逻辑代码
 
 ## 调试
+
+1. Chrome浏览器，开发者工具界面`Sources`页
+2. `top/webpack://./src`目录可以看到源代码，选中之后加断点就行了
