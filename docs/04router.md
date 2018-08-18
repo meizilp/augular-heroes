@@ -85,6 +85,14 @@ export class AppRoutingModule { }
 
 ### 创建仪表盘组件
 
+```sh
+ng generate component dashboard
+```
+
+* 会创建`src/app/dashboard`目录
+* 会创建`src/app/dashboard/dashboard.component.{ts,html,css,spec.ts}`四个组件文件
+* 会修改`src/app/app.module.ts`增加仪表盘组件的声明
+
 ### 增加指向仪表盘的路由
 
 ### 设置默认路由
