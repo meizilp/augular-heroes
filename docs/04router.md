@@ -141,6 +141,16 @@ export class AppRoutingModule { }
 
 ### 设置默认路由
 
+修改`src/app/app-routing.module.ts`，增加`path`为空时重定向，这样默认就打开仪表板路径了，浏览器地址栏中的URL会自动跳转。
+
+```ts
+const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'heroes', component: HeroesComponent },
+  { path: 'dashboard', component: DashboardComponent }
+];
+```
+
 ### 增加页面切换导航
 
 ## 导航到英雄详情
