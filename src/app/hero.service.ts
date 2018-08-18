@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './Hero';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 
 const HEROES: Hero[] = [
   { id: 10, name: 'Mr. Ten' },
@@ -24,5 +24,9 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     return of(HEROES);
+  }
+
+  getHero(id: number): Observable<Hero> {
+    return of(HEROES.find(hero => hero.id === id));
   }
 }

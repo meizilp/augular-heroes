@@ -171,6 +171,30 @@ const routes: Routes = [
 
 以前父组件传递属性到详情组件，详情组件就显示英雄对象的详情，现在要改成详情组件被创建后获取是哪个路由创建的，然后提取参数，获取英雄对象，进行显示。
 
+1. 修改`src/app/hero.service.ts`，增加函数`getHero()`支持通过id获取英雄对象。
+    ```ts
+    getHero(id: number): Observable<Hero> {
+      return of(HEROES.find(hero => hero.id === id));
+    }
+    ```
+2. 修改`src/app/hero-detail/hero-detail.component.ts`：
+    ```ts
+    import { ActivatedRoute } from '@angular/router';
+    import { HeroService } from '../hero.service';
+
+    constructor(private route: ActivatedRoute, private heroService: HeroService) { }
+    ngOnInit() {
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.heroService.getHero(id)
+        .subscribe(hero => this.hero = hero);
+    }
+    ```
+    * 导入2个服务符号，分别用于操作路由以及获取英雄对象。
+    * 构造函数通过依赖注入获取两个服务的实例。
+    * `ngOnInit`中`route.snapshot`在组件刚创建后抓取路由信息生成快照。
+    * `ngOnInit`中`paramMap`是从URL中提取的路由参数值集合，通过参数名称就可以从这个集合获取到参数值。
+    * `id = +`是利用`+`操作符把字符串转成数字。但如果字符串不合法就会是'NaN'。
+
 ### 指向详情的路由
 
 * 仪表盘中指向英雄详情，修改`src/app/dashboard/dashboard.component.html`
@@ -193,3 +217,8 @@ const routes: Routes = [
 ### 返回上级页面
 
 ## 移除无用代码
+
+1. 英雄列表中无用的英雄详情
+2. 英雄列表中处理选中元素的逻辑代码
+
+## 调试
