@@ -1,4 +1,5 @@
-<h1>
-  {{ title }} <!-- 通过Angular的双花括号语法与组件的title属性绑定 -->
-</h1>
-<app-heroes></app-heroes> <!-- 和heroes组件代码装饰器中定义的元素选择器值一致 -->
+<h1>{{title}}</h1>
+<nav>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+<router-outlet></router-outlet>
